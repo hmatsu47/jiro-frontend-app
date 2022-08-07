@@ -1,9 +1,10 @@
-import { Component, ErrorBoundary, Suspense } from "solid-js";
+import { Component, ErrorBoundary } from "solid-js";
 import Box from "@suid/material/Box";
 import Stack from "@suid/material/Stack";
 import { Order } from "./Order";
 import { Ingredients } from "./Ingredients";
 import { TitleBar } from "./TitleBar";
+import { ingredients } from "./signal";
 
 export const App: Component = () => {
   return (
@@ -20,17 +21,13 @@ export const App: Component = () => {
         aria-live="polite"
       >
         <Stack spacing={2} direction="column">
-          <Order />
           <ErrorBoundary
             fallback={(err) => (
-              <div>
-                データ読み込み時にエラーが発生しました：{err.toString()}
-              </div>
+              <div>エラーが発生しました：{err.toString()}</div>
             )}
           >
-            <Suspense fallback={<div>読み込み中...</div>}>
-              <Ingredients />
-            </Suspense>
+            <Order />
+            {!ingredients() ? <></> : <Ingredients />}
           </ErrorBoundary>
         </Stack>
       </Box>

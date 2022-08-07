@@ -9,6 +9,7 @@ import ToggleButtonGroup from "@suid/material/ToggleButtonGroup";
 import Typography from "@suid/material/Typography";
 import RamenIcon from "@suid/icons-material/RamenDining";
 import { CallButtons } from "./CallButtons";
+import { postApiData } from "./apiHandler";
 import {
   ticketLabel,
   setTicketLabel,
@@ -22,21 +23,39 @@ import {
   setAbura,
   karame,
   setKarame,
+  setIngredients,
 } from "./signal";
+import { OrderRequest, OrderResponse } from "./type";
 
 export const Order = () => {
   const theme = createTheme({
     palette: {
       primary: {
-        // Purple and green play nicely together.
         main: yellow[800],
       },
       secondary: {
-        // This is green.A700 as hex.
         main: orange[800],
       },
     },
   });
+
+  const fetchData = async () => {
+    const load = async (): Promise<void> => {
+      const data: OrderResponse = await postApiData(
+        "http://localhost:8080/JiroApi/AcceptOrder",
+        {
+          ticketLabel: ticketLabel(),
+          lotOption: lotOption(),
+          yasai: yasai(),
+          ninniku: ninniku(),
+          abura: abura(),
+          karame: karame(),
+        } as OrderRequest
+      );
+      setIngredients(data);
+    };
+    void load();
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -153,6 +172,7 @@ export const Order = () => {
           <Button
             variant="contained"
             aria-live="polite"
+            onClick={() => fetchData()}
             endIcon={<RamenIcon />}
             sx={{
               display: "flex",

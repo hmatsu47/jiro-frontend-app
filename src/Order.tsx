@@ -8,6 +8,7 @@ import ToggleButton from "@suid/material/ToggleButton";
 import ToggleButtonGroup from "@suid/material/ToggleButtonGroup";
 import Typography from "@suid/material/Typography";
 import RamenIcon from "@suid/icons-material/RamenDining";
+import { CallButtons } from "./CallButtons";
 import {
   ticketLabel,
   setTicketLabel,
@@ -104,11 +105,7 @@ export const Order = () => {
               setYasai(newValue);
             }}
           >
-            <ToggleButton value="指定なし">指定なし</ToggleButton>
-            <ToggleButton value="抜き">抜き</ToggleButton>
-            <ToggleButton value="少なめ">少なめ</ToggleButton>
-            <ToggleButton value="マシ">マシ</ToggleButton>
-            <ToggleButton value="マシマシ">マシマシ</ToggleButton>
+            <CallButtons />
           </ToggleButtonGroup>
           <Box sx={{ padding: "10px 0 0 0" }} />
           <Typography variant="subtitle2" sx={{ verticalAlign: "center" }}>
@@ -122,11 +119,7 @@ export const Order = () => {
               setNinniku(newValue);
             }}
           >
-            <ToggleButton value="指定なし">指定なし</ToggleButton>
-            <ToggleButton value="抜き">抜き</ToggleButton>
-            <ToggleButton value="少なめ">少なめ</ToggleButton>
-            <ToggleButton value="マシ">マシ</ToggleButton>
-            <ToggleButton value="マシマシ">マシマシ</ToggleButton>
+            <CallButtons />
           </ToggleButtonGroup>
           <Box sx={{ padding: "10px 0 0 0" }} />
           <Typography variant="subtitle2" sx={{ verticalAlign: "center" }}>
@@ -140,11 +133,7 @@ export const Order = () => {
               setAbura(newValue);
             }}
           >
-            <ToggleButton value="指定なし">指定なし</ToggleButton>
-            <ToggleButton value="抜き">抜き</ToggleButton>
-            <ToggleButton value="少なめ">少なめ</ToggleButton>
-            <ToggleButton value="マシ">マシ</ToggleButton>
-            <ToggleButton value="マシマシ">マシマシ</ToggleButton>
+            <CallButtons />
           </ToggleButtonGroup>
           <Box sx={{ padding: "10px 0 0 0" }} />
           <Typography variant="subtitle2" sx={{ verticalAlign: "center" }}>
@@ -158,11 +147,7 @@ export const Order = () => {
               setKarame(newValue);
             }}
           >
-            <ToggleButton value="指定なし">指定なし</ToggleButton>
-            <ToggleButton value="抜き">抜き</ToggleButton>
-            <ToggleButton value="少なめ">少なめ</ToggleButton>
-            <ToggleButton value="マシ">マシ</ToggleButton>
-            <ToggleButton value="マシマシ">マシマシ</ToggleButton>
+            <CallButtons />
           </ToggleButtonGroup>
           <Box sx={{ padding: "20px 0 0 0" }} />
           <Button

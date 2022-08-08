@@ -1,4 +1,4 @@
-import { orange } from "@suid/material/colors";
+import { red } from "@suid/material/colors";
 import { createTheme } from "@suid/material/styles";
 
 export const JiroTheme = createTheme({
@@ -7,7 +7,7 @@ export const JiroTheme = createTheme({
       main: "#FFD400",
     },
     secondary: {
-      main: orange[800],
+      main: red[800],
     },
   },
 });

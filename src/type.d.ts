@@ -14,3 +14,6 @@ export type OrderResponse = {
   fat: number;
   kaeshi: number;
 };
+export type ErrorResponse = {
+  message: string;
+};

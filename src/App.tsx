@@ -1,4 +1,4 @@
-import { Component, ErrorBoundary } from "solid-js";
+import { Component } from "solid-js";
 import Box from "@suid/material/Box";
 import Stack from "@suid/material/Stack";
 import { Order } from "./Order";
@@ -21,14 +21,8 @@ export const App: Component = () => {
         aria-live="polite"
       >
         <Stack spacing={2} direction="column">
-          <ErrorBoundary
-            fallback={(err) => (
-              <div>エラーが発生しました：{err.toString()}</div>
-            )}
-          >
-            <Order />
-            {!ingredients() ? <></> : <Ingredients />}
-          </ErrorBoundary>
+          <Order />
+          {!ingredients() ? <></> : <Ingredients />}
         </Stack>
       </Box>
     </>

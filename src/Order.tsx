@@ -110,7 +110,7 @@ export const Order = () => {
               disabled={ticketLabel().indexOf("大") != -1}
             >
               <ToggleButton value="なし">なし（標準量）</ToggleButton>
-              <ToggleButton value="少なめ">少なめ</ToggleButton>
+              <ToggleButton value="少なめ">少なめ（2/3）</ToggleButton>
               <ToggleButton value="半分">半分</ToggleButton>
               <ToggleButton value="1/3">1/3</ToggleButton>
             </ToggleButtonGroup>

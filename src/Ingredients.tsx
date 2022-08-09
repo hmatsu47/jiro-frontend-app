@@ -37,7 +37,7 @@ export const Ingredients = () => {
                   チャーシュー
                 </TableCell>
                 <TableCell align="right">
-                  {ingredients()!.charSiuPork} 枚
+                  {ingredients()!.chaSiuPork} 枚
                 </TableCell>
               </TableRow>
               <TableRow>

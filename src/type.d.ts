@@ -8,7 +8,7 @@ export type OrderRequest = {
 };
 export type OrderResponse = {
   noodle: number;
-  charSiuPork: number;
+  chaSiuPork: number;
   vegetable: number;
   garlic: number;
   fat: number;

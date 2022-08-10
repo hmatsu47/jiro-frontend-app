@@ -1,8 +1,9 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
-import { defineConfig } from 'vite';
-import solidPlugin from 'vite-plugin-solid';
+// import { defineConfig } from 'vite';
+import { defineConfig } from "vitest/config";
+import solidPlugin from "vite-plugin-solid";
 
 export default defineConfig({
   plugins: [solidPlugin()],
@@ -10,12 +11,12 @@ export default defineConfig({
     port: 3000,
   },
   test: {
-    environment: 'jsdom',
+    environment: "jsdom",
     globals: true,
     transformMode: {
       web: [/\.[jt]sx?$/],
     },
-    setupFiles: './setupVitest.ts',
+    setupFiles: "./setupVitest.ts",
     // solid needs to be inline to work around
     // a resolution issue in vitest:
     deps: {
@@ -27,9 +28,9 @@ export default defineConfig({
     isolate: false,
   },
   build: {
-    target: 'esnext',
+    target: "esnext",
   },
   resolve: {
-    conditions: ['development', 'browser'],
+    conditions: ["development", "browser"],
   },
 });

@@ -67,7 +67,10 @@ describe("<Order />", () => {
   test("チケット：大ラーメン（ロットオプション：なし）", () => {
     const { getByText, unmount } = render(() => <Order />);
     const ticketButton = getByText("大ラーメン") as HTMLInputElement;
+    // 直前にロットオプションを指定していても「なし」に変わることを期待
+    const beforeTicketButton = getByText("ラーメン") as HTMLInputElement;
     const lotButton = getByText("少なめ（2/3）") as HTMLInputElement;
+    fireEvent.click(beforeTicketButton);
     fireEvent.click(lotButton);
     fireEvent.click(ticketButton);
     expect(ticketLabel()).toBe("大ラーメン");
@@ -78,7 +81,10 @@ describe("<Order />", () => {
   test("チケット：ぶた入り大ラーメン（ロットオプション：なし）", () => {
     const { getByText, unmount } = render(() => <Order />);
     const ticketButton = getByText("ぶた入り大ラーメン") as HTMLInputElement;
+    // 直前にロットオプションを指定していても「なし」に変わることを期待
+    const beforeTicketButton = getByText("ぶたラーメン") as HTMLInputElement;
     const lotButton = getByText("半分") as HTMLInputElement;
+    fireEvent.click(beforeTicketButton);
     fireEvent.click(lotButton);
     fireEvent.click(ticketButton);
     expect(ticketLabel()).toBe("ぶた入り大ラーメン");
@@ -89,7 +95,12 @@ describe("<Order />", () => {
   test("チケット：ぶたダブル大ラーメン（ロットオプション：なし）", () => {
     const { getByText, unmount } = render(() => <Order />);
     const ticketButton = getByText("ぶたダブル大ラーメン") as HTMLInputElement;
+    // 直前にロットオプションを指定していても「なし」に変わることを期待
+    const beforeTicketButton = getByText(
+      "ぶたダブルラーメン"
+    ) as HTMLInputElement;
     const lotButton = getByText("1/3") as HTMLInputElement;
+    fireEvent.click(beforeTicketButton);
     fireEvent.click(lotButton);
     fireEvent.click(ticketButton);
     expect(ticketLabel()).toBe("ぶたダブル大ラーメン");

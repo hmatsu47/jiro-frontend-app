@@ -77,9 +77,11 @@ export const Order = () => {
               value={ticketLabel()}
               exclusive
               onChange={(event, newValue) => {
-                setTicketLabel(newValue);
-                if (newValue.indexOf("大") != -1) {
-                  setLotOption("なし");
+                if (newValue !== null) {
+                  setTicketLabel(newValue);
+                  if (newValue.indexOf("大") != -1) {
+                    setLotOption("なし");
+                  }
                 }
               }}
             >
@@ -98,80 +100,78 @@ export const Order = () => {
             </ToggleButtonGroup>
             <Box sx={{ padding: "10px 0 0 0" }} />
             <Typography variant="subtitle2" sx={{ verticalAlign: "center" }}>
-              ロットオプション（麺の量） :
+              ロットオプション（量のみ） :
             </Typography>
             <ToggleButtonGroup
               color="secondary"
               value={lotOption()}
               exclusive
               onChange={(event, newValue) => {
-                setLotOption(newValue);
+                if (newValue !== null) {
+                  setLotOption(newValue);
+                }
               }}
               disabled={ticketLabel().indexOf("大") != -1}
             >
-              <ToggleButton value="なし">なし（標準量）</ToggleButton>
-              <ToggleButton value="少なめ">少なめ（2/3）</ToggleButton>
-              <ToggleButton value="半分">半分</ToggleButton>
-              <ToggleButton value="1/3">1/3</ToggleButton>
+              <ToggleButton value="なし">麺の量：指定なし</ToggleButton>
+              <ToggleButton value="少なめ">麺少なめ（2/3）</ToggleButton>
+              <ToggleButton value="半分">麺半分</ToggleButton>
+              <ToggleButton value="1/3">麺 1/3</ToggleButton>
             </ToggleButtonGroup>
             <Box sx={{ padding: "10px 0 0 0" }} />
             <Typography variant="subtitle1" sx={{ verticalAlign: "center" }}>
               コール
-            </Typography>
-            <Typography variant="subtitle2" sx={{ verticalAlign: "center" }}>
-              ヤサイ :
             </Typography>
             <ToggleButtonGroup
               color="secondary"
               value={yasai()}
               exclusive
               onChange={(event, newValue) => {
-                setYasai(newValue);
+                if (newValue !== null) {
+                  setYasai(newValue);
+                }
               }}
             >
-              <CallButtons />
+              <CallButtons name="ヤサイ" />
             </ToggleButtonGroup>
             <Box sx={{ padding: "10px 0 0 0" }} />
-            <Typography variant="subtitle2" sx={{ verticalAlign: "center" }}>
-              ニンニク :
-            </Typography>
             <ToggleButtonGroup
               color="secondary"
               value={ninniku()}
               exclusive
               onChange={(event, newValue) => {
-                setNinniku(newValue);
+                if (newValue !== null) {
+                  setNinniku(newValue);
+                }
               }}
             >
-              <CallButtons />
+              <CallButtons name="ニンニク" />
             </ToggleButtonGroup>
             <Box sx={{ padding: "10px 0 0 0" }} />
-            <Typography variant="subtitle2" sx={{ verticalAlign: "center" }}>
-              アブラ :
-            </Typography>
             <ToggleButtonGroup
               color="secondary"
               value={abura()}
               exclusive
               onChange={(event, newValue) => {
-                setAbura(newValue);
+                if (newValue !== null) {
+                  setAbura(newValue);
+                }
               }}
             >
-              <CallButtons />
+              <CallButtons name="アブラ" />
             </ToggleButtonGroup>
             <Box sx={{ padding: "10px 0 0 0" }} />
-            <Typography variant="subtitle2" sx={{ verticalAlign: "center" }}>
-              カラメ :
-            </Typography>
             <ToggleButtonGroup
               color="secondary"
               value={karame()}
               exclusive
               onChange={(event, newValue) => {
-                setKarame(newValue);
+                if (newValue !== null) {
+                  setKarame(newValue);
+                }
               }}
             >
-              <CallButtons />
+              <CallButtons name="カラメ" />
             </ToggleButtonGroup>
             <Box sx={{ padding: "20px 0 0 0" }} />
             <Button

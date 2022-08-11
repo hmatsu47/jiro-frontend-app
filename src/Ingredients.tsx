@@ -30,42 +30,50 @@ export const Ingredients = () => {
                 <TableCell component="th" scope="row">
                   麺
                 </TableCell>
-                <TableCell align="right">{ingredients()!.noodle} g</TableCell>
+                <TableCell align="right">{`${
+                  ingredients()!.noodle
+                } g`}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell component="th" scope="row">
                   チャーシュー
                 </TableCell>
                 <TableCell align="right">
-                  {ingredients()!.chaSiuPork} 枚
+                  {`${ingredients()!.chaSiuPork} 枚`}
                 </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell component="th" scope="row">
-                  野菜（もやし＆キャベツ）
+                  野菜
                 </TableCell>
                 <TableCell align="right">
-                  {ingredients()!.vegetable * 200} g
+                  {`もやし ${ingredients()!.vegetable * 160} g + キャベツ ${
+                    ingredients()!.vegetable * 40
+                  } g`}
                 </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell component="th" scope="row">
                   ニンニク
                 </TableCell>
-                <TableCell align="right">{ingredients()!.garlic} 片</TableCell>
+                <TableCell align="right">{`${
+                  ingredients()!.garlic
+                } 片`}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell component="th" scope="row">
                   背脂
                 </TableCell>
-                <TableCell align="right">{ingredients()!.fat * 10} g</TableCell>
+                <TableCell align="right">{`${
+                  ingredients()!.fat * 10
+                } g`}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell component="th" scope="row">
                   返し
                 </TableCell>
                 <TableCell align="right">
-                  {ingredients()!.kaeshi * 75} cc
+                  {`${ingredients()!.kaeshi * 75} cc`}
                 </TableCell>
               </TableRow>
             </TableBody>

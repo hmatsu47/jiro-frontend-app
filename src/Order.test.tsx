@@ -10,6 +10,7 @@ import {
   ninniku,
   abura,
   karame,
+  setErrorMessage,
 } from "./signal";
 
 describe("<Order />", () => {
@@ -128,6 +129,14 @@ describe("<Order />", () => {
     fireEvent.click(ticketButton);
     expect(ticketLabel()).toBe("ぶたダブル大ラーメン");
     expect(lotOption()).toBe("なし");
+    unmount();
+  });
+
+  test("エラーメッセージ表示", async () => {
+    const { getByText, unmount } = render(() => <Order />);
+    setErrorMessage("データが取得できません");
+    const alert = (await getByText("データが取得できません")) as HTMLElement;
+    expect(alert).toHaveTextContent("データが取得できません");
     unmount();
   });
 });

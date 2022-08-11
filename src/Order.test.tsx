@@ -1,7 +1,5 @@
 import { describe, expect, test } from "vitest";
-
 import { render, fireEvent } from "solid-testing-library";
-
 import { Order } from "./Order";
 import {
   ticketLabel,

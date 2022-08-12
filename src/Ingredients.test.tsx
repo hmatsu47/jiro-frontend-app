@@ -2,7 +2,6 @@ import { describe, expect, test } from "vitest";
 import { render } from "solid-testing-library";
 import { Ingredients } from "./Ingredients";
 import { setIngredients } from "./signal";
-import { OrderResponse } from "./type";
 
 describe("<Ingredients />", () => {
   test("ラーメン・ロットオプション指定なし・ヤサイ抜き・ニンニク少なめ・アブラ指定なし・カラメマシ", async () => {

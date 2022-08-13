@@ -4,11 +4,11 @@ import { Ingredients } from "./Ingredients";
 import { setIngredients } from "./signal";
 
 describe("<Ingredients />", () => {
-  const resultList = [
+  const ingredientsList = [
     {
       title:
         "ラーメン・ロットオプション指定なし・ヤサイ抜き・ニンニク少なめ・アブラ指定なし・カラメマシ",
-      result: {
+      ingredients: {
         noodle: 300,
         chaSiuPork: 2,
         vegetable: 0.0,
@@ -26,7 +26,7 @@ describe("<Ingredients />", () => {
     {
       title:
         "ぶたラーメン・ロットオプション麺少なめ・ヤサイ少なめ・ニンニク指定なし・アブラマシ・カラメマシマシ",
-      result: {
+      ingredients: {
         noodle: 200,
         chaSiuPork: 4,
         vegetable: 0.5,
@@ -44,7 +44,7 @@ describe("<Ingredients />", () => {
     {
       title:
         "ぶたダブルラーメン・ロットオプション麺半分・ヤサイ指定なし・ニンニクマシ・アブラマシマシ・カラメ抜き",
-      result: {
+      ingredients: {
         noodle: 150,
         chaSiuPork: 8,
         vegetable: 1.0,
@@ -62,7 +62,7 @@ describe("<Ingredients />", () => {
     {
       title:
         "ラーメン・ロットオプション麺 1/3・ヤサイマシ・ニンニクマシマシ・アブラ抜き・カラメ少なめ",
-      result: {
+      ingredients: {
         noodle: 100,
         chaSiuPork: 2,
         vegetable: 2.0,
@@ -80,7 +80,7 @@ describe("<Ingredients />", () => {
     {
       title:
         "大ラーメン・ロットオプションなし・ヤサイマシマシ・ニンニク抜き・アブラ少なめ・カラメ指定なし",
-      result: {
+      ingredients: {
         noodle: 450,
         chaSiuPork: 2,
         vegetable: 3.0,
@@ -98,7 +98,7 @@ describe("<Ingredients />", () => {
     {
       title:
         "ぶた入り大ラーメン・ロットオプションなし・ヤサイ抜き・ニンニク少なめ・アブラ指定なし・カラメマシ",
-      result: {
+      ingredients: {
         noodle: 450,
         chaSiuPork: 4,
         vegetable: 0.0,
@@ -116,7 +116,7 @@ describe("<Ingredients />", () => {
     {
       title:
         "ぶたダブル大ラーメン・ロットオプションなし・ヤサイ少なめ・ニンニク指定なし・アブラマシ・カラメマシマシ",
-      result: {
+      ingredients: {
         noodle: 450,
         chaSiuPork: 8,
         vegetable: 0.5,
@@ -132,9 +132,9 @@ describe("<Ingredients />", () => {
       expectKaeshi: "225 cc",
     },
   ];
-  resultList.forEach((testCase) => {
+  ingredientsList.forEach((testCase) => {
     test(testCase.title, async () => {
-      setIngredients(testCase.result);
+      setIngredients(testCase.ingredients);
       const { getByText, unmount } = render(() => <Ingredients />);
       const noodle = (await getByText(testCase.expectNoodle)) as HTMLElement;
       expect(noodle).toHaveTextContent(testCase.expectNoodle);

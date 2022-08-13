@@ -23,36 +23,6 @@ describe("<Order />", () => {
     unmount();
   });
 
-  const ticketSmallRamenAndNoLotOption = [
-    {
-      ticketButtonLabel: "ぶたラーメン",
-      expectTicketLabel: "ぶたラーメン",
-      expectLotOption: "なし",
-    },
-    {
-      ticketButtonLabel: "ぶたダブルラーメン",
-      expectTicketLabel: "ぶたダブルラーメン",
-      expectLotOption: "なし",
-    },
-    {
-      ticketButtonLabel: "ラーメン",
-      expectTicketLabel: "ラーメン",
-      expectLotOption: "なし",
-    },
-  ];
-  ticketSmallRamenAndNoLotOption.forEach((testCase) => {
-    test(`チケット：${testCase.ticketButtonLabel}＆ロットオプション：なし（デフォルト）`, async () => {
-      const { getByText, unmount } = render(() => <Order />);
-      const ticketButton = (await getByText(
-        testCase.ticketButtonLabel
-      )) as HTMLInputElement;
-      fireEvent.click(ticketButton);
-      expect(ticketLabel()).toBe(testCase.expectTicketLabel);
-      expect(lotOption()).toBe(testCase.expectLotOption);
-      unmount();
-    });
-  });
-
   const ticketSmallRamenAndLotOption = [
     {
       ticketButtonLabel: "ぶたラーメン",
@@ -76,6 +46,30 @@ describe("<Order />", () => {
       ticketButtonLabel: "ぶたラーメン",
       lotButtonLabel: "麺の量：指定なし",
       expectTicketLabel: "ぶたラーメン",
+      expectLotOption: "なし",
+    },
+    {
+      ticketButtonLabel: "ぶたダブルラーメン",
+      lotButtonLabel: "麺少なめ（2/3）",
+      expectTicketLabel: "ぶたダブルラーメン",
+      expectLotOption: "少なめ",
+    },
+    {
+      ticketButtonLabel: "ラーメン",
+      lotButtonLabel: "麺半分",
+      expectTicketLabel: "ラーメン",
+      expectLotOption: "半分",
+    },
+    {
+      ticketButtonLabel: "ぶたラーメン",
+      lotButtonLabel: "麺 1/3",
+      expectTicketLabel: "ぶたラーメン",
+      expectLotOption: "1/3",
+    },
+    {
+      ticketButtonLabel: "ぶたダブルラーメン",
+      lotButtonLabel: "麺の量：指定なし",
+      expectTicketLabel: "ぶたダブルラーメン",
       expectLotOption: "なし",
     },
   ];
@@ -135,66 +129,164 @@ describe("<Order />", () => {
     });
   });
 
-  test("ヤサイ抜き（チケット：ラーメン＆ロットオプション：なし）", async () => {
-    const { getByText, unmount } = render(() => <Order />);
-    const ticketButton = (await getByText("ラーメン")) as HTMLInputElement;
-    fireEvent.click(ticketButton);
-    const lotButton = (await getByText("麺の量：指定なし")) as HTMLInputElement;
-    fireEvent.click(lotButton);
-    const callOption = (await getByText("ヤサイ抜き")) as HTMLInputElement;
-    fireEvent.click(callOption);
-    expect(yasai()).toBe("抜き");
-    unmount();
+  const yasaiCallOption = [
+    {
+      callButtonLabel: "ヤサイ抜き",
+      expectCallOption: "抜き",
+    },
+    {
+      callButtonLabel: "ヤサイ少なめ",
+      expectCallOption: "少なめ",
+    },
+    {
+      callButtonLabel: "ヤサイマシ",
+      expectCallOption: "マシ",
+    },
+    {
+      callButtonLabel: "ヤサイマシマシ",
+      expectCallOption: "マシマシ",
+    },
+    {
+      callButtonLabel: "ヤサイ：指定なし",
+      expectCallOption: "指定なし",
+    },
+  ];
+  yasaiCallOption.forEach((testCase) => {
+    test(`${testCase.callButtonLabel}（チケット：ラーメン＆ロットオプション：なし）`, async () => {
+      const { getByText, unmount } = render(() => <Order />);
+      const ticketButton = (await getByText("ラーメン")) as HTMLInputElement;
+      fireEvent.click(ticketButton);
+      const lotButton = (await getByText(
+        "麺の量：指定なし"
+      )) as HTMLInputElement;
+      fireEvent.click(lotButton);
+      const callButton = (await getByText(
+        testCase.callButtonLabel
+      )) as HTMLInputElement;
+      fireEvent.click(callButton);
+      expect(yasai()).toBe(testCase.expectCallOption);
+      unmount();
+    });
   });
 
-  test("ニンニク少なめ（チケット：ラーメン＆ロットオプション：なし）", async () => {
-    const { getByText, unmount } = render(() => <Order />);
-    const ticketButton = (await getByText("ラーメン")) as HTMLInputElement;
-    fireEvent.click(ticketButton);
-    const lotButton = (await getByText("麺の量：指定なし")) as HTMLInputElement;
-    fireEvent.click(lotButton);
-    const callOption = (await getByText("ニンニク少なめ")) as HTMLInputElement;
-    fireEvent.click(callOption);
-    expect(ninniku()).toBe("少なめ");
-    unmount();
+  const ninnikuCallOption = [
+    {
+      callButtonLabel: "ニンニク抜き",
+      expectCallOption: "抜き",
+    },
+    {
+      callButtonLabel: "ニンニク少なめ",
+      expectCallOption: "少なめ",
+    },
+    {
+      callButtonLabel: "ニンニクマシ",
+      expectCallOption: "マシ",
+    },
+    {
+      callButtonLabel: "ニンニクマシマシ",
+      expectCallOption: "マシマシ",
+    },
+    {
+      callButtonLabel: "ニンニク：指定なし",
+      expectCallOption: "指定なし",
+    },
+  ];
+  ninnikuCallOption.forEach((testCase) => {
+    test(`${testCase.callButtonLabel}（チケット：ラーメン＆ロットオプション：なし）`, async () => {
+      const { getByText, unmount } = render(() => <Order />);
+      const ticketButton = (await getByText("ラーメン")) as HTMLInputElement;
+      fireEvent.click(ticketButton);
+      const lotButton = (await getByText(
+        "麺の量：指定なし"
+      )) as HTMLInputElement;
+      fireEvent.click(lotButton);
+      const callButton = (await getByText(
+        testCase.callButtonLabel
+      )) as HTMLInputElement;
+      fireEvent.click(callButton);
+      expect(ninniku()).toBe(testCase.expectCallOption);
+      unmount();
+    });
   });
 
-  test("アブラマシ（チケット：ラーメン＆ロットオプション：なし）", async () => {
-    const { getByText, unmount } = render(() => <Order />);
-    const ticketButton = (await getByText("ラーメン")) as HTMLInputElement;
-    fireEvent.click(ticketButton);
-    const lotButton = (await getByText("麺の量：指定なし")) as HTMLInputElement;
-    fireEvent.click(lotButton);
-    const callOption = (await getByText("アブラマシ")) as HTMLInputElement;
-    fireEvent.click(callOption);
-    expect(abura()).toBe("マシ");
-    unmount();
+  const aburaCallOption = [
+    {
+      callButtonLabel: "アブラ抜き",
+      expectCallOption: "抜き",
+    },
+    {
+      callButtonLabel: "アブラ少なめ",
+      expectCallOption: "少なめ",
+    },
+    {
+      callButtonLabel: "アブラマシ",
+      expectCallOption: "マシ",
+    },
+    {
+      callButtonLabel: "アブラマシマシ",
+      expectCallOption: "マシマシ",
+    },
+    {
+      callButtonLabel: "アブラ：指定なし",
+      expectCallOption: "指定なし",
+    },
+  ];
+  aburaCallOption.forEach((testCase) => {
+    test(`${testCase.callButtonLabel}（チケット：ラーメン＆ロットオプション：なし）`, async () => {
+      const { getByText, unmount } = render(() => <Order />);
+      const ticketButton = (await getByText("ラーメン")) as HTMLInputElement;
+      fireEvent.click(ticketButton);
+      const lotButton = (await getByText(
+        "麺の量：指定なし"
+      )) as HTMLInputElement;
+      fireEvent.click(lotButton);
+      const callButton = (await getByText(
+        testCase.callButtonLabel
+      )) as HTMLInputElement;
+      fireEvent.click(callButton);
+      expect(abura()).toBe(testCase.expectCallOption);
+      unmount();
+    });
   });
 
-  test("カラメマシマシ（チケット：ラーメン＆ロットオプション：なし）", async () => {
-    const { getByText, unmount } = render(() => <Order />);
-    const ticketButton = (await getByText("ラーメン")) as HTMLInputElement;
-    fireEvent.click(ticketButton);
-    const lotButton = (await getByText("麺の量：指定なし")) as HTMLInputElement;
-    fireEvent.click(lotButton);
-    const callOption = (await getByText("カラメマシマシ")) as HTMLInputElement;
-    fireEvent.click(callOption);
-    expect(karame()).toBe("マシマシ");
-    unmount();
-  });
-
-  test("ヤサイ指定なし（チケット：ラーメン＆ロットオプション：なし）", async () => {
-    const { getByText, unmount } = render(() => <Order />);
-    const ticketButton = (await getByText("ラーメン")) as HTMLInputElement;
-    fireEvent.click(ticketButton);
-    const lotButton = (await getByText("麺の量：指定なし")) as HTMLInputElement;
-    fireEvent.click(lotButton);
-    const callOption = (await getByText(
-      "ヤサイ：指定なし"
-    )) as HTMLInputElement;
-    fireEvent.click(callOption);
-    expect(yasai()).toBe("指定なし");
-    unmount();
+  const karameCallOption = [
+    {
+      callButtonLabel: "カラメ抜き",
+      expectCallOption: "抜き",
+    },
+    {
+      callButtonLabel: "カラメ少なめ",
+      expectCallOption: "少なめ",
+    },
+    {
+      callButtonLabel: "カラメマシ",
+      expectCallOption: "マシ",
+    },
+    {
+      callButtonLabel: "カラメマシマシ",
+      expectCallOption: "マシマシ",
+    },
+    {
+      callButtonLabel: "カラメ：指定なし",
+      expectCallOption: "指定なし",
+    },
+  ];
+  karameCallOption.forEach((testCase) => {
+    test(`${testCase.callButtonLabel}（チケット：ラーメン＆ロットオプション：なし）`, async () => {
+      const { getByText, unmount } = render(() => <Order />);
+      const ticketButton = (await getByText("ラーメン")) as HTMLInputElement;
+      fireEvent.click(ticketButton);
+      const lotButton = (await getByText(
+        "麺の量：指定なし"
+      )) as HTMLInputElement;
+      fireEvent.click(lotButton);
+      const callButton = (await getByText(
+        testCase.callButtonLabel
+      )) as HTMLInputElement;
+      fireEvent.click(callButton);
+      expect(karame()).toBe(testCase.expectCallOption);
+      unmount();
+    });
   });
 
   test("エラーメッセージ表示", async () => {

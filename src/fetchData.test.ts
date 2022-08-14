@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { beforeEach, describe, expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 import "vi-fetch/setup";
 import { mockPost } from "vi-fetch";
 import { fetchData } from "./fetchData";
@@ -33,7 +33,7 @@ describe("fetchData", () => {
         kaeshi: 1.0,
       } as OrderResponse);
     await fetchData();
-    // とりあえず呼び出しが行われたことだけを確認
+    // とりあえず呼び出しが行われたことだけを確認（戻り値は今のところ上手くテストできず）
     expect(mock).toHaveFetched();
     expect(mock).toHaveFetchedWithBody({
       ticketLabel: ticketLabel(),

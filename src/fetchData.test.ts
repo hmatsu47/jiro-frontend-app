@@ -12,7 +12,7 @@ import {
   ticketLabel,
   yasai,
 } from "./signal";
-import { OrderRequest, ErrorResponse } from "./type";
+import { OrderRequest, OrderResponse } from "./type";
 
 describe("fetchData", () => {
   beforeEach(() => {
@@ -23,8 +23,13 @@ describe("fetchData", () => {
       "POST",
       "http://localhost:8080/JiroApi/AcceptOrder"
     ).willResolve({
-      message: "エラー",
-    } as ErrorResponse);
+      noodle: 300,
+      chaSiuPork: 2,
+      vegetable: 1.0,
+      garlic: 1.0,
+      fat: 1.0,
+      kaeshi: 1.0,
+    } as OrderResponse);
     await fetchData();
     // とりあえず呼び出しが行われたことだけを確認
     expect(mock).toHaveFetched();

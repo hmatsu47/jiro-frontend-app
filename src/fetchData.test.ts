@@ -105,14 +105,16 @@ describe("fetchData", () => {
       await fetchData();
       // とりあえず呼び出しが行われたことだけを確認（戻り値は今のところ上手くテストできず）
       expect(mock).toHaveFetched();
-      expect(mock).toHaveFetchedWithBody({
-        ticketLabel: ticketLabel(),
-        lotOption: lotOption(),
-        yasai: yasai(),
-        ninniku: ninniku(),
-        abura: abura(),
-        karame: karame(),
-      } as OrderRequest);
+      expect(mock).toHaveFetchedWithBody(
+        JSON.stringify({
+          ticketLabel: ticketLabel(),
+          lotOption: lotOption(),
+          yasai: yasai(),
+          ninniku: ninniku(),
+          abura: abura(),
+          karame: karame(),
+        } as OrderRequest)
+      );
       mock.clear();
     });
   });
